@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Вішліст Дмитра</title>
+  <meta name="description" content="Персональний вішліст Дмитра зі списком бажаних подарунків." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121934;
+      --text: #e8ecf1;
+      --muted: #9aa4b2;
+      --accent: #7c5cff;
+      --accent-2: #4bc0c8;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(76, 64, 247, 0.25), transparent),
+        radial-gradient(800px 400px at 120% 10%, rgba(75, 192, 200, 0.25), transparent),
+        var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 32px;
+    }
+    .card {
+      width: min(720px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    header {
+      padding: 28px 28px 0 28px;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(28px, 4.2vw, 40px);
+      letter-spacing: -0.02em;
+    }
+    p.lead {
+      margin: 0 0 20px 0;
+      color: var(--muted);
+    }
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0 24px 8px 24px;
+      display: grid;
+      gap: 16px;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: calc(var(--radius) - 6px);
+    }
+    .badge {
+      flex: 0 0 40px;
+      height: 40px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 12px;
+      font-weight: 700;
+      color: #081220;
+    }
+    .content { flex: 1; }
+    .title { font-weight: 650; font-size: 18px; }
+    .note { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .actions { display: flex; gap: 10px; }
+    .btn {
+      appearance: none;
+      border: none;
+      border-radius: 12px;
+      background: #fff;
+      color: #0c1222;
+      padding: 10px 14px;
+      font-weight: 650;
+      cursor: pointer;
+      transition: transform .06s ease, box-shadow .2s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn.secondary { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); box-shadow: none; }
+    footer { padding: 10px 24px 24px 24px; color: var(--muted); font-size: 13px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 1px, 1px); border: 0; }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <header>
+      <h1>Вішліст Дмитра</h1>
+      <p class="lead">Тут зібрані речі, які будуть доречними як подарунок 😊</p>
+    </header>
+
+    <ul class="list" aria-label="Список подарунків">
+      <li class="item">
+        <div class="badge" aria-hidden="true">1</div>
+        <div class="content">
+          <div class="title">Подарунковий сертифікат Rozetka</div>
+          <div class="note">Електронний або фізичний сертифікат із будь-яким номіналом.</div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="https://rozetka.com.ua/ua/giftcertificate/c90374/producer=rozetka/" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">🎁</span>
+            Перейти на Rozetka
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <footer>
+      Оновлено: <span id="updated"></span>
+      <span class="sr-only">Дата останнього оновлення сторінки</span>
+    </footer>
+  </main>
+
+  <script>
+    // Показати дату останнього оновлення (UTC) у зручному форматі
+    const fmt = new Intl.DateTimeFormat('uk-UA', { dateStyle: 'long' });
+    document.getElementById('updated').textContent = fmt.format(new Date());
+  </script>
+</body>
+</html>
